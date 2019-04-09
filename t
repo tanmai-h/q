@@ -133,6 +133,7 @@ void circle2(int a, int b, int r) {
 		draw_pixel(-y+a,-x+b);
 	}
 }
+
 void mpellipse(int a,int b) {
 	double sa=a*a, sb=b*b;
 	double x=0,y=b;
@@ -231,8 +232,23 @@ void mykey(unsigned char key,int x,int y) {
         glFlush();
     }
 }
-
+GLfloat vertices[]={10.0,10.0,
+                   100.0,100.0,
+                   150.0,200.0,
+                   10.0,100.0
+                   };
+GLfloat color[]={1.0,0.0,0.0,
+                0.0,1.0,0.0,
+                0.0,0.0,1.0,
+                1.0,0.0,1.0};
 void myDisplay() {
+	glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glVertexPointer(2,GL_FLOAT,4,vertices);
+    glColorPointer(3,GL_FLOAT,4,color);
+    glDrawArrays(GL_POLYGON,0,4);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
 	printf("%d %d %d %d \n",x1,y1,x2,y2);
 	// mpline(x1, x2, y1, y2);
 	// mpline(0,0,100,200);
